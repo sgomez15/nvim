@@ -55,7 +55,7 @@ vim.opt.errorbells = false                         -- No error bells
 vim.opt.backspace = "indent,eol,start"             -- Better backspace behavior
 vim.opt.autochdir = false                          -- Don't auto change directory
 vim.opt.iskeyword:append("-")                      -- Treat dash as part of word
-vim.opt.path:append("**")                          -- include subdirectories in search
+--vim.opt.path:append("**")                          -- include subdirectories in search
 vim.opt.selection = "exclusive"                    -- Selection behavior
 vim.opt.mouse = "a"                                -- Enable mouse support
 vim.opt.clipboard = "unnamedplus"                  -- Use system clipboard
@@ -89,6 +89,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bx", ":bdelete", { desc = "Delete/close buffer" })
 
 -- Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
@@ -116,8 +117,7 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Quick file navigation
 vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
-vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
-
+--vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
 
 -- ============================================================================
 -- USEFUL FUNCTIONS

@@ -104,13 +104,55 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
   {
+    'RRethy/nvim-treesitter-endwise',
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {},
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  },
+  {
     'neovim/nvim-lspconfig',
   },
   {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        ruby = { 'rubocop' },
+        json = { 'jq' },
+        yaml = { 'yq' },
+      },
+    },
+  },
+  {
     'mason-org/mason.nvim',
-    config = function()
-      require('mason').setup()
-    end,
+    opts = {
+      sort = {
+        sorter = "case_sensitive",
+      },
+      view = {
+        width = 30,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      filters = {
+        dotfiles = true,
+      },
+    },
   },
   {
     "mason-org/mason-lspconfig.nvim",
@@ -174,6 +216,24 @@ require('lazy').setup({
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
       },
     },
   },
@@ -254,6 +314,7 @@ require('lazy').setup({
       vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
       vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+      vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "[G]oto [D]efinitions" })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set("n", "<leader>/", function()
